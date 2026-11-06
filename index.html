@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gas Engineer Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:#eef0f3;color:#1b1f24;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+/* ---------- presenter shell ---------- */
+.intro{padding:48px 0 24px}
+.intro small{font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6b7380;font-size:12px}
+.intro h1{font-size:clamp(28px,4vw,42px);line-height:1.1;margin:8px 0 12px}
+.intro p{max-width:680px;color:#4a525e}
+.namebox{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:14px;color:#4a525e}
+.namebox input{font:inherit;padding:10px 12px;border:1px solid #c9ced6;border-radius:8px;min-width:240px;background:#fff}
+.tabs{position:sticky;top:0;z-index:50;background:#eef0f3;padding:12px 0;border-bottom:1px solid #d9dde3}
+.tabs .wrap{display:flex;gap:8px;overflow-x:auto}
+.tab{flex:0 0 auto;font:inherit;font-weight:600;font-size:14px;padding:10px 16px;border-radius:999px;border:1px solid #c9ced6;background:#fff;cursor:pointer}
+.tab.on{background:#1b1f24;color:#fff;border-color:#1b1f24}
+.note{margin:24px 0 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.note div{background:#fff;border-radius:10px;padding:14px 16px;font-size:14px;color:#4a525e;border:1px solid #e1e4e9}
+.note b{display:block;color:#1b1f24;margin-bottom:2px}
+.frame{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px -20px rgba(20,30,50,.35);margin-bottom:56px;border:1px solid #d9dde3}
+.bar{height:36px;background:#e4e7ec;display:flex;align-items:center;gap:6px;padding:0 14px}
+.bar i{width:11px;height:11px;border-radius:50%;background:#c6cbd3}
+.bar span{margin-left:12px;font-size:12px;color:#6b7380;background:#fff;padding:3px 12px;border-radius:6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.concept{display:none}.concept.on{display:block}
+.ph{background:repeating-linear-gradient(45deg,rgba(0,0,0,.06) 0 10px,rgba(0,0,0,.02) 10px 20px);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(0,0,0,.4);border-radius:10px;text-align:center;padding:8px}
+.grid{display:grid;gap:16px}
+footer.end{padding:0 0 48px;color:#6b7380;font-size:13px}
+
+/* ---------- CONCEPT A: Trusted Local ---------- */
+.A{--navy:#0f2a4a;--yel:#ffc629;--ink:#17202b;--soft:#f4f6f9;color:var(--ink)}
+.A .top{background:var(--navy);color:#cfd9e6;font-size:13px;padding:8px 0}
+.A .top .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.A nav{padding:16px 0;border-bottom:1px solid #e6e9ee}
+.A nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.A .logo{font-weight:800;font-size:20px;color:var(--navy)}
+.A .logo em{font-style:normal;color:#e0a800}
+.A .links{display:flex;gap:22px;font-size:14px;font-weight:500}
+.A .btn{display:inline-block;background:var(--yel);color:var(--navy);font-weight:700;padding:12px 20px;border-radius:8px;font-size:15px}
+.A .btn.o{background:transparent;border:2px solid #fff;color:#fff}
+.A .hero{background:linear-gradient(135deg,var(--navy),#1b4775);color:#fff;padding:56px 0}
+.A .hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+.A .hero h2{font-size:clamp(30px,4.4vw,48px);line-height:1.08;margin-bottom:14px}
+.A .hero p{color:#cfd9e6;max-width:520px;margin-bottom:22px}
+.A .hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+.A .card{background:#fff;color:var(--ink);border-radius:12px;padding:22px}
+.A .card h3{font-size:18px;margin-bottom:12px}
+.A .card .f{height:40px;border:1px solid #dde2e8;border-radius:8px;margin-bottom:10px;font-size:13px;color:#8a93a0;display:flex;align-items:center;padding:0 12px}
+.A .card .btn{width:100%;text-align:center}
+.A .trust{background:var(--yel);padding:14px 0;font-weight:700;color:var(--navy);font-size:14px}
+.A .trust .wrap{display:flex;justify-content:space-around;gap:16px;flex-wrap:wrap}
+.A section{padding:56px 0}
+.A h3.s{font-size:clamp(24px,3vw,32px);margin-bottom:6px;color:var(--navy)}
+.A .sub{color:#5a6472;margin-bottom:26px}
+.A .svc{grid-template-columns:repeat(3,1fr)}
+.A .svc div{border:1px solid #e3e7ec;border-radius:12px;padding:22px}
+.A .svc b{display:block;color:#e0a800;font-size:13px;margin-bottom:6px}
+.A .svc h4{font-size:17px;margin-bottom:6px}
+.A .svc p{font-size:14px;color:#5a6472;margin-bottom:10px}
+.A .svc a{font-size:14px;font-weight:700;color:var(--navy)}
+.A .why{background:var(--soft)}
+.A .why .wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.A .why ul{list-style:none;display:grid;gap:12px}
+.A .why li{padding-left:28px;position:relative}
+.A .why li:before{content:"✓";position:absolute;left:0;color:var(--navy);font-weight:800}
+.A .rev{grid-template-columns:repeat(3,1fr)}
+.A .rev div{background:var(--soft);border-radius:12px;padding:20px;font-size:14px}
+.A .stars{color:#e0a800;letter-spacing:2px;margin-bottom:6px}
+.A .areas{display:flex;flex-wrap:wrap;gap:8px}
+.A .areas span{background:#fff;border:1px solid #dde2e8;border-radius:999px;padding:6px 14px;font-size:14px}
+.A .foot{background:var(--navy);color:#cfd9e6;padding:40px 0;font-size:14px}
+.A .foot .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* ---------- CONCEPT B: Fix It Fast ---------- */
+.B{--bg:#141619;--card:#1e2126;--org:#ff6a13;--txt:#eef0f2;--mut:#9aa1ab;background:var(--bg);color:var(--txt)}
+.B nav{padding:16px 0;border-bottom:1px solid #2a2e35}
+.B nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.B .logo{font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:.02em}
+.B .logo em{font-style:normal;color:var(--org)}
+.B .btn{display:inline-block;background:var(--org);color:#fff;font-weight:700;padding:13px 20px;border-radius:6px;font-size:15px}
+.B .btn.w{background:#25d366;color:#0b2a17}
+.B .hero{padding:64px 0 48px}
+.B .tag{display:inline-block;border:1px solid var(--org);color:var(--org);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:5px 10px;border-radius:4px;margin-bottom:16px}
+.B .hero h2{font-size:clamp(34px,5.5vw,64px);line-height:1;text-transform:uppercase;letter-spacing:-.01em;max-width:820px;margin-bottom:16px}
+.B .hero h2 span{color:var(--org)}
+.B .hero p{color:var(--mut);max-width:560px;margin-bottom:24px;font-size:17px}
+.B .cta{display:flex;gap:10px;flex-wrap:wrap}
+.B .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.B .badges span{background:var(--card);border:1px solid #2a2e35;padding:8px 14px;border-radius:6px;font-size:13px;font-weight:600}
+.B section{padding:52px 0;border-top:1px solid #2a2e35}
+.B h3.s{font-size:clamp(24px,3vw,34px);text-transform:uppercase;margin-bottom:8px}
+.B .sub{color:var(--mut);margin-bottom:24px}
+.B .sym{grid-template-columns:repeat(4,1fr)}
+.B .sym div{background:var(--card);border-radius:8px;padding:18px;font-weight:600;font-size:15px;border-left:3px solid var(--org)}
+.B .price{width:100%;border-collapse:collapse;font-size:15px}
+.B .price td{padding:14px 12px;border-bottom:1px solid #2a2e35}
+.B .price td:last-child{text-align:right;font-weight:800;color:var(--org);white-space:nowrap}
+.B .two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.B .wa{background:var(--card);border-radius:10px;padding:22px}
+.B .wa .f{height:40px;background:#14171b;border:1px solid #2a2e35;border-radius:6px;margin-bottom:10px;font-size:13px;color:#6d7480;display:flex;align-items:center;padding:0 12px}
+.B .work{grid-template-columns:repeat(4,1fr)}
+.B .work .ph{height:150px;color:rgba(255,255,255,.35);background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 10px,rgba(255,255,255,.02) 10px 20px)}
+.B .sticky{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr;font-weight:800;text-transform:uppercase;font-size:15px;text-align:center}
+.B .sticky a{padding:16px}
+.B .sticky a:first-child{background:var(--org);color:#fff}
+.B .sticky a:last-child{background:#25d366;color:#0b2a17}
+.B .foot{padding:32px 0;color:var(--mut);font-size:14px}
+
+/* ---------- CONCEPT C: Premium Clean ---------- */
+.C{--grn:#0e5c4a;--mint:#e7f3ee;--ink:#14211d;--mut:#5d6b66;background:#fbfaf7;color:var(--ink)}
+.C nav{padding:22px 0}
+.C nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.C .logo{font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:700;color:var(--grn)}
+.C .links{display:flex;gap:26px;font-size:14px;color:var(--mut)}
+.C .btn{display:inline-block;background:var(--grn);color:#fff;font-weight:600;padding:13px 22px;border-radius:999px;font-size:15px}
+.C .btn.o{background:transparent;color:var(--grn);border:1.5px solid var(--grn)}
+.C .hero{padding:40px 0 64px}
+.C .hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.C .hero h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(34px,5vw,58px);line-height:1.05;margin-bottom:18px}
+.C .hero h2 i{color:var(--grn)}
+.C .hero p{color:var(--mut);font-size:17px;max-width:480px;margin-bottom:26px}
+.C .cta{display:flex;gap:10px;flex-wrap:wrap}
+.C .hero .ph{height:420px;border-radius:24px}
+.C .book{background:#fff;border:1px solid #e6e3dc;border-radius:999px;padding:8px 8px 8px 20px;display:flex;align-items:center;gap:10px;margin-top:26px;max-width:480px;font-size:14px;color:var(--mut)}
+.C .book span{flex:1}
+.C .strip{border-top:1px solid #e6e3dc;border-bottom:1px solid #e6e3dc;padding:20px 0;font-size:14px;color:var(--mut)}
+.C .strip .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.C .strip b{color:var(--ink)}
+.C section{padding:72px 0}
+.C h3.s{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(28px,3.4vw,40px);margin-bottom:10px}
+.C .sub{color:var(--mut);margin-bottom:32px;max-width:560px}
+.C .svc{grid-template-columns:repeat(2,1fr)}
+.C .svc div{background:#fff;border:1px solid #ebe8e1;border-radius:20px;padding:28px;display:flex;gap:18px}
+.C .svc .ic{flex:0 0 44px;height:44px;border-radius:12px;background:var(--mint);color:var(--grn);display:flex;align-items:center;justify-content:center;font-weight:800}
+.C .svc h4{font-size:18px;margin-bottom:4px}
+.C .svc p{font-size:14px;color:var(--mut)}
+.C .about{background:var(--mint)}
+.C .about .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center}
+.C .about .ph{height:340px;border-radius:24px}
+.C blockquote{font-family:Fraunces,Georgia,serif;font-size:clamp(22px,2.6vw,30px);line-height:1.3;max-width:820px;margin:0 auto;text-align:center}
+.C cite{display:block;text-align:center;font-style:normal;color:var(--mut);margin-top:16px;font-size:14px}
+.C .foot{background:var(--ink);color:#b9c4bf;padding:48px 0;font-size:14px}
+.C .foot .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.C .foot .logo{color:#fff}
+
+@media (max-width:820px){
+  .A .hero .wrap,.A .why .wrap,.C .hero .wrap,.C .about .wrap,.B .two{grid-template-columns:1fr}
+  .A .svc,.A .rev,.C .svc{grid-template-columns:1fr}
+  .B .sym,.B .work{grid-template-columns:1fr 1fr}
+  .A .links,.C .links,.A .top .hide{display:none}
+  .C .hero .ph{height:240px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap intro">
+  <small>Rough homepage concepts · Draft for discussion</small>
+  <h1>Three website directions for a new gas engineer business</h1>
+  <p>These are quick layout ideas, not finished sites. Words, photos and prices are placeholders. Pick the direction you like best (or mix bits from each) and we'll build the real thing from there.</p>
+  <label class="namebox">Try your business name:
+    <input id="bizname" value="Your Name Gas &amp; Heating" maxlength="40">
+  </label>
+</div>
+
+<div class="tabs"><div class="wrap">
+  <button class="tab on" data-c="A">1. Trusted Local</button>
+  <button class="tab" data-c="B">2. Fix It Fast</button>
+  <button class="tab" data-c="C">3. Premium &amp; Calm</button>
+</div></div>
+
+<div class="wrap">
+
+<!-- =============== CONCEPT A =============== -->
+<div class="concept on" id="A">
+  <div class="note">
+    <div><b>The feel</b>Friendly, reliable local engineer. Navy and yellow, easy to read.</div>
+    <div><b>Best for</b>Homeowners and landlords who want someone they can trust.</div>
+    <div><b>Key idea</b>Quote form right in the top section, trust badges straight underneath.</div>
+  </div>
+  <div class="frame"><div class="bar"><i></i><i></i><i></i><span>yourgasbusiness.co.uk</span></div>
+  <div class="A">
+    <div class="top"><div class="wrap"><span>Gas Safe Registered · No. 000000</span><span class="hide">Mon to Sat 7am to 7pm · 07000 000000</span></div></div>
+    <nav><div class="wrap"><div class="logo bn">Your Name Gas &amp; Heating</div><div class="links"><a>Services</a><a>Landlords</a><a>Reviews</a><a>Areas</a></div><a class="btn">Call now</a></div></nav>
+    <div class="hero"><div class="wrap">
+      <div>
+        <h2>Boilers, heating and gas work you can rely on.</h2>
+        <p>Local, Gas Safe registered engineer for homeowners and landlords. Honest prices, tidy work, and I turn up when I say I will.</p>
+        <div class="cta"><a class="btn">Book an engineer</a><a class="btn o">Quote on WhatsApp</a></div>
+      </div>
+      <div class="card"><h3>Get a free quote</h3><div class="f">Your name</div><div class="f">Phone number</div><div class="f">Postcode</div><div class="f">What do you need help with?</div><a class="btn">Send request</a></div>
+    </div></div>
+    <div class="trust"><div class="wrap"><span>✓ Gas Safe registered</span><span>✓ Fully insured</span><span>✓ No call-out fee</span><span>✓ 5★ reviews</span></div></div>
+    <section><div class="wrap">
+      <h3 class="s">What I can help with</h3><p class="sub">From a yearly service to a brand new boiler.</p>
+      <div class="grid svc">
+        <div><b>01</b><h4>Boiler servicing</h4><p>Keep it safe, efficient and your warranty valid.</p><a>Request a quote →</a></div>
+        <div><b>02</b><h4>Boiler repairs</h4><p>No heat or hot water? Most faults fixed first visit.</p><a>Request a quote →</a></div>
+        <div><b>03</b><h4>New boiler installs</h4><p>Fixed price, fitted properly, guarantee included.</p><a>Request a quote →</a></div>
+        <div><b>04</b><h4>Landlord gas certificates</h4><p>CP12 certificates, reminders when they're due.</p><a>Request a quote →</a></div>
+        <div><b>05</b><h4>Radiators &amp; heating</h4><p>New radiators, valves, cold spots and power flushes.</p><a>Request a quote →</a></div>
+        <div><b>06</b><h4>Emergency call-outs</h4><p>Gas smell, leaks or no heating in winter.</p><a>Request a quote →</a></div>
+      </div>
+    </div></section>
+    <section class="why"><div class="wrap">
+      <div><h3 class="s">Why choose me</h3><p class="sub">You deal with the engineer doing the job, every time.</p>
+        <ul><li>One person, start to finish, no call centre</li><li>Clear price before any work starts</li><li>Dust sheets down, mess cleaned up</li><li>Landlord packages for multiple properties</li></ul></div>
+      <div class="ph" style="height:280px">Photo of you with the van</div>
+    </div></section>
+    <section><div class="wrap">
+      <h3 class="s">What customers say</h3><p class="sub">Google / Checkatrade reviews pulled in here.</p>
+      <div class="grid rev">
+        <div><div class="stars">★★★★★</div>"Came out same day, fixed the boiler and explained everything." <br><b>Sarah, homeowner</b></div>
+        <div><div class="stars">★★★★★</div>"Sorted gas certificates for all four of my flats. Easy." <br><b>Mark, landlord</b></div>
+        <div><div class="stars">★★★★★</div>"Fair price for a new boiler and left the place spotless." <br><b>Priya, homeowner</b></div>
+      </div>
+    </div></section>
+    <section class="why"><div class="wrap" style="display:block">
+      <h3 class="s">Areas I cover</h3><p class="sub">Not on the list? Give me a call.</p>
+      <div class="areas"><span>Area 1</span><span>Area 2</span><span>Area 3</span><span>Area 4</span><span>Area 5</span><span>Area 6</span><span>Area 7</span><span>Area 8</span></div>
+    </div></section>
+    <div class="foot"><div class="wrap"><div><div class="logo bn" style="color:#fff">Your Name Gas &amp; Heating</div>Gas Safe No. 000000</div><div>07000 000000<br>hello@yourgasbusiness.co.uk</div></div></div>
+  </div></div>
+</div>
+
+<!-- =============== CONCEPT B =============== -->
+<div class="concept" id="B">
+  <div class="note">
+    <div><b>The feel</b>Bold, no-nonsense, gets straight to the point. Dark with orange.</div>
+    <div><b>Best for</b>Repairs and emergency work, people with a problem right now.</div>
+    <div><b>Key idea</b>Prices on show, plus a WhatsApp button that sends the fault details.</div>
+  </div>
+  <div class="frame"><div class="bar"><i></i><i></i><i></i><span>yourgasbusiness.co.uk</span></div>
+  <div class="B">
+    <nav><div class="wrap"><div class="logo bn">Your Name Gas &amp; Heating</div><a class="btn">07000 000000</a></div></nav>
+    <div class="hero"><div class="wrap">
+      <span class="tag">Same-day appointments available</span>
+      <h2>Boiler broken? <span>Fixed fast.</span></h2>
+      <p>Repair first, replace only when it makes sense. Gas Safe registered engineer covering [your area].</p>
+      <div class="cta"><a class="btn">Call now</a><a class="btn w">Send the fault on WhatsApp</a></div>
+      <div class="badges"><span>Gas Safe No. 000000</span><span>No call-out fee</span><span>Labour guarantee</span><span>Fully insured</span></div>
+    </div></div>
+    <section><div class="wrap">
+      <h3 class="s">Sound familiar?</h3><p class="sub">Tap the one that matches and I'll get back to you.</p>
+      <div class="grid sym"><div>No heating</div><div>No hot water</div><div>Boiler losing pressure</div><div>Error code on display</div><div>Leaking boiler</div><div>Strange noises</div><div>Pilot keeps going out</div><div>Smell of gas</div></div>
+    </div></section>
+    <section><div class="wrap two">
+      <div><h3 class="s">Straight prices</h3><p class="sub">No surprises. Example prices, to be confirmed.</p>
+        <table class="price">
+          <tr><td>Boiler repair (per hour)</td><td>£XX</td></tr>
+          <tr><td>Annual boiler service</td><td>£XX</td></tr>
+          <tr><td>Landlord gas certificate (CP12)</td><td>£XX</td></tr>
+          <tr><td>Service + CP12 together</td><td>£XXX</td></tr>
+          <tr><td>New boiler, fitted</td><td>from £X,XXX</td></tr>
+        </table></div>
+      <div class="wa"><h3 class="s" style="font-size:22px">Quick quote on WhatsApp</h3><p class="sub">Fill this in and it opens WhatsApp with your details ready to send.</p>
+        <div class="f">Postcode</div><div class="f">Boiler make and model</div><div class="f">Error code (if any)</div><div class="f">What's happening?</div><a class="btn w" style="width:100%;text-align:center">Open WhatsApp</a></div>
+    </div></section>
+    <section><div class="wrap">
+      <h3 class="s">Recent jobs</h3><p class="sub">Real photos from real jobs build trust fast.</p>
+      <div class="grid work"><div class="ph">Job photo</div><div class="ph">Job photo</div><div class="ph">Job photo</div><div class="ph">Job photo</div></div>
+    </div></section>
+    <div class="foot"><div class="wrap">Your Name Gas &amp; Heating · Gas Safe No. 000000 · Covering [your area]</div></div>
+    <div class="sticky"><a>Call now</a><a>WhatsApp</a></div>
+  </div></div>
+</div>
+
+<!-- =============== CONCEPT C =============== -->
+<div class="concept" id="C">
+  <div class="note">
+    <div><b>The feel</b>Calm, modern and premium. Cream and deep green, lots of space.</div>
+    <div><b>Best for</b>Higher-value installs: new boilers, full heating systems, nicer homes.</div>
+    <div><b>Key idea</b>Big photo of you, a simple "book a visit" bar, fewer but bigger sections.</div>
+  </div>
+  <div class="frame"><div class="bar"><i></i><i></i><i></i><span>yourgasbusiness.co.uk</span></div>
+  <div class="C">
+    <nav><div class="wrap"><div class="logo bn">Your Name Gas &amp; Heating</div><div class="links"><a>Services</a><a>About</a><a>Reviews</a><a>Contact</a></div><a class="btn o">07000 000000</a></div></nav>
+    <div class="hero"><div class="wrap">
+      <div>
+        <h2>A warm home, <i>done properly.</i></h2>
+        <p>Careful, Gas Safe registered heating engineer. New boilers, servicing and repairs, with a clear price and a clean finish.</p>
+        <div class="cta"><a class="btn">Book a free survey</a><a class="btn o">See services</a></div>
+        <div class="book"><span>I need help with… a new boiler</span><a class="btn" style="padding:10px 18px">Book</a></div>
+      </div>
+      <div class="ph">Large photo: you at work in a home</div>
+    </div></div>
+    <div class="strip"><div class="wrap"><span><b>Gas Safe</b> registered</span><span><b>10 year</b> boiler warranties</span><span><b>5.0★</b> on Google</span><span><b>Fixed</b> prices</span></div></div>
+    <section><div class="wrap">
+      <h3 class="s">Services</h3><p class="sub">Everything for your heating and hot water, from one trusted engineer.</p>
+      <div class="grid svc">
+        <div><span class="ic">1</span><div><h4>New boiler installation</h4><p>Free survey, fixed quote, finance options.</p></div></div>
+        <div><span class="ic">2</span><div><h4>Servicing &amp; repairs</h4><p>Yearly checks and fast fixes when things go wrong.</p></div></div>
+        <div><span class="ic">3</span><div><h4>Landlord certificates</h4><p>CP12 safety checks with reminders each year.</p></div></div>
+        <div><span class="ic">4</span><div><h4>Heating upgrades</h4><p>Radiators, smart thermostats and system flushes.</p></div></div>
+      </div>
+    </div></section>
+    <section class="about"><div class="wrap">
+      <div class="ph">Portrait photo</div>
+      <div><h3 class="s">Hi, I'm [Name].</h3><p class="sub" style="margin-bottom:20px">A short, personal paragraph about you: years in the trade, where you trained, why you started on your own, and what customers can expect when you turn up.</p><a class="btn">Get in touch</a></div>
+    </div></section>
+    <section><div class="wrap">
+      <blockquote>"Couldn't recommend more highly. Explained every option, fitted our new boiler in a day and left the house cleaner than he found it."</blockquote>
+      <cite>★★★★★ · Customer name, Area</cite>
+    </div></section>
+    <div class="foot"><div class="wrap"><div><div class="logo bn">Your Name Gas &amp; Heating</div>Gas Safe No. 000000</div><div>07000 000000<br>hello@yourgasbusiness.co.uk</div></div></div>
+  </div></div>
+</div>
+
+<footer class="end">Rough concepts for discussion only. All names, numbers, prices and reviews are placeholders.</footer>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));
+  document.querySelectorAll('.concept').forEach(c=>c.classList.toggle('on',c.id===t.dataset.c));
+}));
+const inp=document.getElementById('bizname');
+inp.addEventListener('input',()=>{const v=inp.value.trim()||'Your Name Gas & Heating';document.querySelectorAll('.bn').forEach(e=>e.textContent=v)});
+</script>
+</body>
+</html>
